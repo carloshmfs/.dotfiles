@@ -1,4 +1,4 @@
-import = [ "~/.config/alacritty/themes/themes/monokai_charcoal.toml" ]
+import = [ "~/.config/alacritty/themes/themes/dracula.toml" ]
 
 [font]
 size = 10
@@ -20,4 +20,4 @@ family = "JetBrainsMonoNerdFont"
 style = "Regular"
 
 [window]
-opacity = 0.87
+# opacity = 0.87
