@@ -1,0 +1,23 @@
+import = [ "~/.config/alacritty/themes/themes/monokai_charcoal.toml" ]
+
+[font]
+size = 10
+
+[font.bold]
+family = "JetBrainsMonoNerdFont"
+style = "Bold"
+
+[font.bold_italic]
+family = "JetBrainsMonoNerdFont"
+style = "Bold Italic"
+
+[font.italic]
+family = "JetBrainsMonoNerdFont"
+style = "Italic"
+
+[font.normal]
+family = "JetBrainsMonoNerdFont"
+style = "Regular"
+
+[window]
+opacity = 0.87
