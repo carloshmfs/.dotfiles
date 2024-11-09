@@ -7,7 +7,7 @@ picom -b --fade-in-step=1 --fade-out-step=1 --no-fading-openclose
 xset r rate 325 25
 
 # mouse accel
-xinput set-prop 11 294 -0.7
+xinput set-prop 11 296 -0.7
 
 # desktop wallpaper
 nitrogen --restore > /dev/null 2>&1
