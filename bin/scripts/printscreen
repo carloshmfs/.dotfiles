@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
 
-output=~/Pictures/Screenshots/$(date "+%d-%m-%Y_%H-%M-%S").png
+FILENAME=$(date "+%d-%m-%Y_%H-%M-%S").png
+OUTPUT_DIR=~/Pictures/Screenshots
 
-grim -g "$(slurp)" $output 
+mkdir -p ~/Pictures/Screenshots
+
+grim $OUTPUT_DIR/$FILENAME
 
 if [ $? -eq 1 ]; then
     echo "Error when attempting to screenshot the screen."
     exit 1
 fi
 
-wl-copy < $output
-
-if [ $? -eq 1 ]; then
-    echo "Error when attempting to copy the screenshot to the system clipboard."
-    exit 1
-fi
+dunstify -h string:x-dunst-stack-tag:test "Printscreen $FILENAME saved at $OUTPUT_DIR"

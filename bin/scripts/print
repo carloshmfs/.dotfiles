@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+output=~/Pictures/Screenshots/$(date "+%d-%m-%Y_%H-%M-%S").png
+
+grim -g "$(slurp)" $output 
+
+if [ $? -eq 1 ]; then
+    echo "Error when attempting to screenshot the screen."
+    exit 1
+fi
+
+wl-copy < $output
+
+if [ $? -eq 1 ]; then
+    echo "Error when attempting to copy the screenshot to the system clipboard."
+    exit 1
+fi
