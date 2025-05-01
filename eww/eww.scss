@@ -1,0 +1,26 @@
+* {
+  all: unset; // Unsets everything so you can style everything from scratch
+}
+
+// Global Styles
+.bar {
+  background-color: #3a3a3a;
+  color: #b0b4bc;
+  padding: 5px;
+  border: 2px solid #ff0000;
+}
+
+// Styles on classes (see eww.yuck for more information)
+
+.workspaces button {
+  padding: 5px 10px;
+  border: 1px solid #00ff00;
+}
+
+.workspaces button:hover {
+  color: #D35D6E;
+}
+
+.workspaces button.active {
+  color: #00ff00;
+}
