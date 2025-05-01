@@ -4,16 +4,22 @@
 
 // Global Styles
 .bar {
-  background-color: #3a3a3a;
+  background-color: rgba(0,0,0,0.5);
   color: #b0b4bc;
   padding: 5px;
   border: 2px solid #ff0000;
+  border-image: linear-gradient(to right, #d60270, #0038a8) 1;
 }
 
 // Styles on classes (see eww.yuck for more information)
 
+.bar .date {
+  color: #33ccff;
+  font-weight: bold;
+}
+
 .workspaces button {
-  padding: 5px 10px;
+  padding: 3px 10px;
   border: 1px solid #00ff00;
 }
 
@@ -22,5 +28,5 @@
 }
 
 .workspaces button.active {
-  color: #00ff00;
+  color: #0000ff;
 }

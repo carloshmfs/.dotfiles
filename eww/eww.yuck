@@ -5,13 +5,24 @@
     (centerbox :orientation "h" :class "bar"
         (workspaces)
         (date)
-        (label :text "hello")))
+        (side)))
 
 (defpoll datestr :interval "5s"
     "date +'%a %d/%m/%Y %H:%M:%S'")
 
+(defwidget volume []
+    (label :text "hello"))
+
+(defwidget side []
+    (box :class "side"
+        :orientation "h"
+        :space-evenly true
+        :halling "start"
+        :spacing 10
+        (volume)))
+
 (defwidget date []
-    (label :text "[ ${datestr} ]"))
+    (label :class "date" :text "[ ${datestr} ]"))
 
 (defwidget workspaces []
     (box :class "workspaces"
@@ -20,14 +31,14 @@
         :halign "start"
         :spacing 10
         (button :class {current_workspace == 1 ? "active" : ""} :onclick "hyprctl dispatch workspace 1" 1)
-        (button :class {current_workspace == 2 ? "active" : ""}  :onclick "hyprctl dispatch workspace 2" 2)
-        (button :class {current_workspace == 3 ? "active" : ""}  :onclick "hyprctl dispatch workspace 3" 3)
-        (button :class {current_workspace == 4 ? "active" : ""}  :onclick "hyprctl dispatch workspace 4" 4)
-        (button :class {current_workspace == 5 ? "active" : ""}  :onclick "hyprctl dispatch workspace 5" 5)
-        (button :class {current_workspace == 6 ? "active" : ""}  :onclick "hyprctl dispatch workspace 6" 6)
-        (button :class {current_workspace == 7 ? "active" : ""}  :onclick "hyprctl dispatch workspace 7" 7)
-        (button :class {current_workspace == 8 ? "active" : ""}  :onclick "hyprctl dispatch workspace 8" 8)
-        (button :class {current_workspace == 9 ? "active" : ""}  :onclick "hyprctl dispatch workspace 9" 9)))
+        (button :class {current_workspace == 2 ? "active" : ""} :onclick "hyprctl dispatch workspace 2" 2)
+        (button :class {current_workspace == 3 ? "active" : ""} :onclick "hyprctl dispatch workspace 3" 3)
+        (button :class {current_workspace == 4 ? "active" : ""} :onclick "hyprctl dispatch workspace 4" 4)
+        (button :class {current_workspace == 5 ? "active" : ""} :onclick "hyprctl dispatch workspace 5" 5)
+        (button :class {current_workspace == 6 ? "active" : ""} :onclick "hyprctl dispatch workspace 6" 6)
+        (button :class {current_workspace == 7 ? "active" : ""} :onclick "hyprctl dispatch workspace 7" 7)
+        (button :class {current_workspace == 8 ? "active" : ""} :onclick "hyprctl dispatch workspace 8" 8)
+        (button :class {current_workspace == 9 ? "active" : ""} :onclick "hyprctl dispatch workspace 9" 9)))
 
 (defwindow top-bar-1
     :monitor 0
