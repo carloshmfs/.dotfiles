@@ -1,0 +1,53 @@
+(defwidget bar []
+    (centerbox :orientation "h"
+        (workspaces)
+        (date)
+        (label :text "hello")))
+
+(defpoll datestr :interval "5s"
+    "date +'%d/%m/%Y %H:%M:%S'")
+
+(defwidget date []
+    (label :text "${datestr}"))
+
+(defwidget workspaces []
+    (box :class "workspaces"
+        :orientation "h"
+        :space-evenly true
+        :halign "start"
+        :spacing 10
+        (button :onclick "wmctrl -s 0" 1)
+        (button :onclick "wmctrl -s 1" 2)
+        (button :onclick "wmctrl -s 2" 3)
+        (button :onclick "wmctrl -s 3" 4)
+        (button :onclick "wmctrl -s 4" 5)
+        (button :onclick "wmctrl -s 5" 6)
+        (button :onclick "wmctrl -s 6" 7)
+        (button :onclick "wmctrl -s 7" 8)
+        (button :onclick "wmctrl -s 8" 9)))
+
+(defwindow top-bar-1
+    :monitor 0
+    :geometry (geometry :x "0%"
+        :y "10px"
+        :width "1900"
+        :height "30px"
+        :anchor "top center")
+    :stacking "fg"
+    :exclusive true
+    :windowtype "dock"
+    :wm-ignore false
+    (bar))
+
+(defwindow top-bar-2
+    :monitor 1
+    :geometry (geometry :x "0%"
+        :y "10px"
+        :width "1900"
+        :height "30px"
+        :anchor "top center")
+    :stacking "fg"
+    :exclusive true
+    :windowtype "dock"
+    :wm-ignore false
+    (bar))
