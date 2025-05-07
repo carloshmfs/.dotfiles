@@ -16,6 +16,9 @@
 (defwidget ram []
     (label :text "[ RAM: ${round(EWW_RAM['total_mem'] / 1073741824, 2)}Gi / ${round(EWW_RAM['used_mem'] / 1073741824, 2)}Gi ]" :class "ram"))
 
+(defwidget cpu []
+    (label :text "[ CPU: ${round(EWW_CPU['avg'], 2)}% ]" :class "cpu"))
+
 (defwidget side []
     (box :class "side"
         :orientation "h"
@@ -23,6 +26,7 @@
         :halling "start"
         :spacing 10
         (ram)
+        (cpu)
         (volume)))
 
 (defwidget date []

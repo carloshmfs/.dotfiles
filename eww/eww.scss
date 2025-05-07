@@ -8,7 +8,7 @@
   color: #b0b4bc;
   padding: 5px;
   border: 2px solid #ff0000;
-  border-image: linear-gradient(to right, #d60270, #0038a8) 1;
+  border-image: linear-gradient(to right, #d60270, #9b4f96, #0038a8) 1;
 }
 
 // Styles on classes (see eww.yuck for more information)
@@ -18,9 +18,19 @@
   font-weight: bold;
 }
 
+.bar .ram {
+  color: #33ccff;
+  font-weight: bold;
+}
+
+.bar .cpu {
+  color: #33ccff;
+  font-weight: bold;
+}
+
 .workspaces button {
   padding: 3px 10px;
-  border: 1px solid #00ff00;
+  border: 1px solid #0038a8;
 }
 
 .workspaces button:hover {
