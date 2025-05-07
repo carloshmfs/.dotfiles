@@ -2,7 +2,7 @@
 
 # based on: https://wiki.hyprland.org/IPC/#how-to-use-socket2-with-bash
 
-hyprctl activeworkspace | grep --color=never -oP '(?<=monitorID: )\d+'
+hyprctl activeworkspace | grep --color=never -oP '\(\K\d+(?=\))'
 
 print_workspace_id() {
     event=$1
