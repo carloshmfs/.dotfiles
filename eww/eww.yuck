@@ -11,7 +11,10 @@
     `~/.local/bin/scripts/clock.sh`)
 
 (defwidget volume []
-    (label :text "hello"))
+    (label :text "hello" :class "volume"))
+
+(defwidget ram []
+    (label :text "[ RAM: ${round(EWW_RAM['total_mem'] / 1073741824, 2)}Gi / ${round(EWW_RAM['used_mem'] / 1073741824, 2)}Gi ]" :class "ram"))
 
 (defwidget side []
     (box :class "side"
@@ -19,6 +22,7 @@
         :space-evenly true
         :halling "start"
         :spacing 10
+        (ram)
         (volume)))
 
 (defwidget date []
