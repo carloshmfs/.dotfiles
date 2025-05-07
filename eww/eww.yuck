@@ -19,6 +19,9 @@
 (defwidget cpu []
     (label :text "[ CPU: ${round(EWW_CPU['avg'], 2)}% ]" :class "cpu"))
 
+(defwidget net []
+    (label :text "[  : ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)} /  : ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)} ]" :class "net"))
+
 (defwidget side []
     (box :class "side"
         :orientation "h"
@@ -27,6 +30,7 @@
         :spacing 10
         (ram)
         (cpu)
+        (net)
         (volume)))
 
 (defwidget date []
