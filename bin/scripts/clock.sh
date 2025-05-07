@@ -12,6 +12,7 @@ do
     fi
 
     date +"%a %d/%m/%Y %H:%M:%S"
+    if [ $(($(date +"%S") % 5)) -ne 0 ]; then is_in_sync=0; fi
 
     sleep 5
 done
