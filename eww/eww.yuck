@@ -7,8 +7,8 @@
         (date)
         (side)))
 
-(defpoll datestr :interval "5s"
-    "date +'%a %d/%m/%Y %H:%M:%S'")
+(deflisten datestr :initial "a d/m/Y H:M:S"
+    `~/.local/bin/scripts/clock.sh`)
 
 (defwidget volume []
     (label :text "hello"))
