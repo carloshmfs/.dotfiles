@@ -4,11 +4,11 @@
 
 // Global Styles
 .bar {
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.8);
   color: #b0b4bc;
   padding: 5px;
-  border: 2px solid #ff0000;
-  border-image: linear-gradient(to right, #d60270, #9b4f96, #0038a8) 1;
+  border: 2px solid #e53935;
+  border-radius: 2px;
 }
 
 // Styles on classes (see eww.yuck for more information)
@@ -16,21 +16,25 @@
 .bar .date {
   color: #33ccff;
   font-weight: bold;
+  border: 1px solid #ff0000;
 }
 
 .bar .ram {
   color: #33ccff;
   font-weight: bold;
+  border: 1px solid #ff0000;
 }
 
 .bar .cpu {
   color: #33ccff;
   font-weight: bold;
+  border: 1px solid #ff0000;
 }
 
 .workspaces button {
-  padding: 3px 10px;
-  border: 1px solid #0038a8;
+  border-radius: 2px;
+  padding: 0 3px;
+  background-color: #666666;
 }
 
 .workspaces button:hover {
@@ -38,5 +42,15 @@
 }
 
 .workspaces button.active {
-  color: #0000ff;
+  background-color: #e53935;
+}
+
+.arch-logo {
+  margin: 0 15px;
+  color: #e53935;
+  font-weight: bold;
+}
+
+.rightside {
+  border: 1px solid purple;
 }
