@@ -11,21 +11,21 @@
     `~/.local/bin/scripts/clock.sh`)
 
 (defwidget volume []
-    (label :halign "end" :text "[    100% ]" :class "volume"))
+    (label :halign "end" :text "[   100% ]" :class "volume"))
 
 (defwidget ram []
-    (label :halign "end" :text "[ RAM: ${round(EWW_RAM['total_mem'] / 1073741824, 2)}Gi / ${round(EWW_RAM['used_mem'] / 1073741824, 2)}Gi ]" :class "ram"))
+    (label :halign "end" :text "[  ${round(EWW_RAM['total_mem'] / powi(1024, 3), 2)}GiB / ${round(EWW_RAM['used_mem'] / powi(1024, 3), 2)}GiB ]" :class "ram"))
 
 (defwidget cpu []
-    (label :halign "end" :text "[ CPU: ${round(EWW_CPU['avg'], 2)}% ]" :class "cpu"))
+    (label :halign "end" :text "[  ${round(EWW_CPU['avg'], 2)}% ]" :class "cpu"))
 
 (defwidget net []
-    (label :halign "end" :text "[  : ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)}Ki /  : ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)}Ki ]" :class "net"))
+    (label :halign "end" :text "[  : ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)}KiB /  : ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)}KiB ]" :class "net"))
 
 (defwidget rightside []
     (box :class "rightside"
         :orientation "h"
-        :space-evenly: false
+        :space-evenly: true
         :halign "end"
         (ram)
         (cpu)
