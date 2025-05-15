@@ -2,7 +2,7 @@
 
 is_in_sync=0
 
-date +"%a %d/%m/%Y %H:%M:%S"
+date +"  %a %d/%m/%Y -   %H:%M:%S"
 
 while true
 do
@@ -11,7 +11,7 @@ do
         continue
     fi
 
-    date +"%a %d/%m/%Y %H:%M:%S"
+    date +"  %a %d/%m/%Y -   %H:%M:%S"
     if [ $(($(date +"%S") % 5)) -ne 0 ]; then is_in_sync=0; fi
 
     sleep 5
