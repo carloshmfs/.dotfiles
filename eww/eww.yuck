@@ -11,7 +11,7 @@
     `~/.local/bin/scripts/clock.sh`)
 
 (defwidget volume []
-    (label :halign "end" :text "[   100% ]" :class "volume"))
+    (label :text "[   100% ]" :class "volume"))
 
 (defwidget ram []
     (label :halign "end" :text "[  ${round(EWW_RAM['total_mem'] / powi(1024, 3), 2)}GiB / ${round(EWW_RAM['used_mem'] / powi(1024, 3), 2)}GiB ]" :class "ram"))
@@ -25,10 +25,8 @@
 (defwidget rightside []
     (box :class "rightside"
         :orientation "h"
-        :space-evenly: true
-        :halign "end"
-        (ram)
         (cpu)
+        (ram)
         (net)
         (volume)
         (date)))
@@ -42,7 +40,7 @@
     (box :class "leftside"
         :halign "start"
         :space-evenly false
-        (label :halign "start" :class "arch-logo" :text "")
+        (label :halign "start" :class "arch-logo" :text "󰣇")
         (workspaces)))
 
 (defwidget date []
