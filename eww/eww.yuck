@@ -14,13 +14,17 @@
     (label :text "[   100% ]" :class "volume"))
 
 (defwidget ram []
-    (label :halign "end" :text "[  ${round(EWW_RAM['total_mem'] / powi(1024, 3), 2)}GiB / ${round(EWW_RAM['used_mem'] / powi(1024, 3), 2)}GiB ]" :class "ram"))
+    (label :text "[  ${round(EWW_RAM['used_mem'] / 1073741824, 2)}GiB / ${round(EWW_RAM['total_mem'] / 1073741824, 2)}GiB ]" :class "ram"))
+;; (defwidget ram []
+;;     (label :text "[  ${round(EWW_RAM['total_mem'] / powi(1024, 3), 2)}GiB / ${round(EWW_RAM['used_mem'] / powi(1024, 3), 2)}GiB ]" :class "ram"))
 
 (defwidget cpu []
-    (label :halign "end" :text "[  ${round(EWW_CPU['avg'], 2)}% ]" :class "cpu"))
+    (label :text "[  ${round(EWW_CPU['avg'], 2)}% ]" :class "cpu"))
 
 (defwidget net []
-    (label :halign "end" :text "[  : ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)}KiB /  : ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)}KiB ]" :class "net"))
+    (label :text "[  : ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)}KiB /  : ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)}KiB ]" :class "net"))
+;; (defwidget net []
+;;     (label :text "[ ${EWW_NET.enp9s0.NET_DOWN} ]" :class "net"))
 
 (defwidget rightside []
     (box :class "rightside"
@@ -28,7 +32,6 @@
         (cpu)
         (ram)
         (net)
-        (volume)
         (date)))
 
 (defwidget center []
@@ -38,9 +41,8 @@
 
 (defwidget leftside []
     (box :class "leftside"
-        :halign "start"
         :space-evenly false
-        (label :halign "start" :class "arch-logo" :text "󰣇")
+        (label :class "arch-logo" :text "󰣇")
         (workspaces)))
 
 (defwidget date []
@@ -50,7 +52,6 @@
     (box :class "workspaces"
         :orientation "h"
         :space-evenly true
-        :halign "start"
         :spacing 10
         (button :class {current_workspace == 1 ? "active" : ""} :onclick "hyprctl dispatch workspace 1" )
         (button :class {current_workspace == 2 ? "active" : ""} :onclick "hyprctl dispatch workspace 2" )
