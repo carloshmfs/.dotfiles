@@ -100,7 +100,6 @@
     (
         label
         :class "clock"
-        :orientation "h"
         :text "${datestr}"
     )
 )
