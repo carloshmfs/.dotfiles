@@ -55,19 +55,6 @@
         (button :class {current_workspace == 4 ? "active" : ""} :onclick "hyprctl dispatch workspace 4" )
         (button :class {current_workspace == 5 ? "active" : ""} :onclick "hyprctl dispatch workspace 5" )))
 
-(defwindow top-bar-1
-    :monitor 0
-    :geometry (geometry :x "0%"
-                        :y "10px"
-                        :width "1908"
-                        :height "30px"
-                        :anchor "top center")
-    :stacking "fg"
-    :exclusive true
-    :windowtype "dock"
-    :wm-ignore false
-    (bar))
-
 ;; ====================================================================================================================
 
 ;; DEFINES 
@@ -100,7 +87,6 @@
     (
         label
         :class "clock"
-        :orientation "h"
         :text "${datestr}"
     )
 )
@@ -111,7 +97,6 @@
         label
         :text " ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)}KiB/s"
         :class "down-speed"
-        :orientation "h"
     )
 )
 
@@ -121,7 +106,6 @@
         label
         :text " ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)}KiB/s"
         :class "up-speed"
-        :orientation "h"
     )
 )
 
@@ -131,7 +115,6 @@
         label
         :text " ${round(EWW_CPU['avg'], 2)}%"
         :class "cpu-usage"
-        :orientation "h"
     )
 )
 
@@ -203,7 +186,7 @@
 )
 
 (
-    defwindow top-bar-1
+    defwindow statusbar_1
     :monitor 0
     :geometry (geometry :x "0%"
                         :y "10px"
@@ -218,7 +201,7 @@
 )
 
 (
-    defwindow top-bar-2
+    defwindow statusbar_2
     :monitor 1
     :geometry (geometry :x "0%"
                         :y "10px"
