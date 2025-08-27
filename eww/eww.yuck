@@ -62,14 +62,21 @@
     deflisten
     current_workspace 
     :initial 1 
-    `~/.local/bin/scripts/hyprland_eventlistener.sh`
+    `~/.local/bin/scripts/hyprland_eventlistener.sh --workspace`
+)
+
+(
+    deflisten
+    current_window 
+    :initial 1 
+    `~/.local/bin/scripts/hyprland_eventlistener.sh --window`
 )
 
 (
     deflisten
     datestr
     :initial "a d/m/Y H:M:S"
-    `~/.local/bin/scripts/clock.sh`
+    `~/.local/bin/scripts/clock`
 )
 
 (
@@ -77,8 +84,11 @@
     (
         systray
         :class "trayicons"
-        :orientation "h"
-        :prepend-new true
+        :hexpand true
+        :halign "center"
+        :pack-direction "left"
+        :spacing 6
+        :icon-size 20
     )
 )
 
@@ -95,7 +105,7 @@
     defwidget down-speed []
     (
         label
-        :text " ${round(EWW_NET.enp9s0.NET_DOWN / 1024, 2)}KiB/s"
+        :text " ${round(EWW_NET.enp9s0.NET_DOWN, 2)}KiB/s"
         :class "down-speed"
     )
 )
@@ -104,7 +114,7 @@
     defwidget up-speed []
     (
         label
-        :text " ${round(EWW_NET.enp9s0.NET_UP / 1024, 2)}KiB/s"
+        :text " ${round(EWW_NET.enp9s0.NET_UP, 2)}KiB/s"
         :class "up-speed"
     )
 )
@@ -113,7 +123,26 @@
     defwidget cpu-usage []
     (
         label
-        :text " ${round(EWW_CPU['avg'], 2)}%"
+        :text " ${round(EWW_CPU['avg'], 2)}% ${round(
+            (
+                (
+                    EWW_CPU["cores"][0]["freq"] +
+                    EWW_CPU["cores"][1]["freq"] +
+                    EWW_CPU["cores"][2]["freq"] +
+                    EWW_CPU["cores"][3]["freq"] +
+                    EWW_CPU["cores"][4]["freq"] +
+                    EWW_CPU["cores"][5]["freq"] +
+                    EWW_CPU["cores"][6]["freq"] +
+                    EWW_CPU["cores"][7]["freq"] +
+                    EWW_CPU["cores"][8]["freq"] +
+                    EWW_CPU["cores"][9]["freq"] +
+                    EWW_CPU["cores"][10]["freq"] +
+                    EWW_CPU["cores"][11]["freq"]
+                )
+                / 12
+            ) / 1024,
+            2
+        )}Ghz"
         :class "cpu-usage"
     )
 )
@@ -124,6 +153,7 @@
         label
         :class "ram-usage"
         :text " ${round(EWW_RAM['used_mem'] / 1073741824, 2)}GiB"
+        ;; ${round(EWW_RAM['used_mem'] / powi(1024, 3), 2)
     )
 )
 
@@ -132,6 +162,20 @@
     (
         box
         :class "left-module"
+        :orientation "h"
+        :halign "start"
+        :spacing 5
+        :space-evenly false
+        (stats-module)
+        (label :class "window-module" :text "${current_window}")
+    )
+)
+
+(
+    defwidget stats-module []
+    (
+        box
+        :class "stats-module"
         :orientation "h"
         :halign "start"
         :spacing 5
