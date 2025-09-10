@@ -42,6 +42,85 @@
   background-color: #e53935;
 }
 
+/* ================================================================================================================== */
+
+
+.window-module {
+  margin-left: 8px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #313743;
+  font-weight: bold;
+}
+
+.stats-module {
+  margin-left: 8px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #313743;
+  font-weight: bold;
+}
+
+.right-module {
+  margin-right: 8px;
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #313743
+}
+
+.right-module .trayicons {
+  color: #F8F8F2;
+}
+
+.right-module .clock {
+  color: #F8F8F2;
+  font-weight: bold;
+}
+
+.left-module .cpu-usage {
+  border-radius: 15px;
+  padding: 2px;
+  color: #BD93F9;
+}
+
+.left-module .ram-usage {
+  border-radius: 15px;
+  padding: 2px;
+  color: #FF79C6;
+}
+
+.left-module .down-speed {
+  border-radius: 15px;
+  padding: 2px;
+  color: #50FA7B;
+}
+
+.left-module .up-speed {
+  border-radius: 15px;
+  padding: 2px;
+  color: #F1FA8C;
+}
+
+.center-workspaces {
+  border-radius: 10px;
+  padding: 5px;
+  background-color: #313743
+}
+
+.center-workspaces button {
+  border-radius: 6px; 
+  padding: 3px 8px;
+  color: #ffffff;
+}
+
+.center-workspaces button:hover {
+  background-color: #232b3a;
+}
+
+.center-workspaces button.active {
+  background-color: #151b27
+}
+
 .arch-logo {
   margin: 0 15px;
   color: #ffffff;

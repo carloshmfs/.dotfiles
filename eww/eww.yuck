@@ -1,14 +1,9 @@
-(deflisten current_workspace :initial 1 
-    `~/.local/bin/scripts/hyprland_eventlistener.sh`)
-
 (defwidget bar []
     (centerbox :orientation "h" :class "bar"
         (leftside)
         (center)
         (rightside)))
 
-(deflisten datestr :initial "a d/m/Y H:M:S"
-    `~/.local/bin/scripts/clock.sh`)
 
 (defwidget volume []
     (label :text "[   100% ]" :class "volume"))
@@ -48,6 +43,7 @@
 (defwidget date []
     (label :class "date" :text "[ ${datestr} ]"))
 
+
 (defwidget workspaces []
     (box :class "workspaces"
         :orientation "h"
@@ -59,28 +55,206 @@
         (button :class {current_workspace == 4 ? "active" : ""} :onclick "hyprctl dispatch workspace 4" )
         (button :class {current_workspace == 5 ? "active" : ""} :onclick "hyprctl dispatch workspace 5" )))
 
-(defwindow top-bar-1
+;; ====================================================================================================================
+
+;; DEFINES 
+(
+    deflisten
+    current_workspace 
+    :initial 1 
+    `~/.local/bin/scripts/hyprland_eventlistener.sh --workspace`
+)
+
+(
+    deflisten
+    current_window 
+    :initial 1 
+    `~/.local/bin/scripts/hyprland_eventlistener.sh --window`
+)
+
+(
+    deflisten
+    datestr
+    :initial "a d/m/Y H:M:S"
+    `~/.local/bin/scripts/clock`
+)
+
+(
+    defwidget trayicons []
+    (
+        systray
+        :class "trayicons"
+        :hexpand true
+        :halign "center"
+        :pack-direction "left"
+        :spacing 6
+        :icon-size 20
+    )
+)
+
+(
+    defwidget clock []
+    (
+        label
+        :class "clock"
+        :text "${datestr}"
+    )
+)
+
+(
+    defwidget down-speed []
+    (
+        label
+        :text " ${round(EWW_NET.enp9s0.NET_DOWN, 2)}KiB/s"
+        :class "down-speed"
+    )
+)
+
+(
+    defwidget up-speed []
+    (
+        label
+        :text " ${round(EWW_NET.enp9s0.NET_UP, 2)}KiB/s"
+        :class "up-speed"
+    )
+)
+
+(
+    defwidget cpu-usage []
+    (
+        label
+        :text " ${round(EWW_CPU['avg'], 2)}% ${round(
+            (
+                (
+                    EWW_CPU["cores"][0]["freq"] +
+                    EWW_CPU["cores"][1]["freq"] +
+                    EWW_CPU["cores"][2]["freq"] +
+                    EWW_CPU["cores"][3]["freq"] +
+                    EWW_CPU["cores"][4]["freq"] +
+                    EWW_CPU["cores"][5]["freq"] +
+                    EWW_CPU["cores"][6]["freq"] +
+                    EWW_CPU["cores"][7]["freq"] +
+                    EWW_CPU["cores"][8]["freq"] +
+                    EWW_CPU["cores"][9]["freq"] +
+                    EWW_CPU["cores"][10]["freq"] +
+                    EWW_CPU["cores"][11]["freq"]
+                )
+                / 12
+            ) / 1024,
+            2
+        )}Ghz"
+        :class "cpu-usage"
+    )
+)
+
+(
+    defwidget ram-usage []
+    (
+        label
+        :class "ram-usage"
+        :text " ${round(EWW_RAM['used_mem'] / 1073741824, 2)}GiB"
+        ;; ${round(EWW_RAM['used_mem'] / powi(1024, 3), 2)
+    )
+)
+
+(
+    defwidget left-module []
+    (
+        box
+        :class "left-module"
+        :orientation "h"
+        :halign "start"
+        :spacing 5
+        :space-evenly false
+        (stats-module)
+        (label :class "window-module" :text "${current_window}")
+    )
+)
+
+(
+    defwidget stats-module []
+    (
+        box
+        :class "stats-module"
+        :orientation "h"
+        :halign "start"
+        :spacing 5
+        :space-evenly false
+        (cpu-usage)
+        (ram-usage)
+        (down-speed)
+        (up-speed)
+    )
+)
+
+(
+    defwidget right-module []
+    (
+        box
+        :class "right-module"
+        :orientation "h"
+        :halign "end"
+        :spacing 5
+        :space-evenly false
+        (trayicons)
+        (clock)
+    )
+)
+
+(
+    defwidget center-workspaces []
+    (
+        box
+        :class "center-workspaces"
+        :orientation "h"
+        :space-evenly true
+        :spacing 5
+        (button :class {current_workspace == 1 ? "active" : ""} :onclick "hyprctl dispatch workspace 1" (label :text "1"))
+        (button :class {current_workspace == 2 ? "active" : ""} :onclick "hyprctl dispatch workspace 2" (label :text "2"))
+        (button :class {current_workspace == 3 ? "active" : ""} :onclick "hyprctl dispatch workspace 3" (label :text "3"))
+        (button :class {current_workspace == 4 ? "active" : ""} :onclick "hyprctl dispatch workspace 4" (label :text "4"))
+        (button :class {current_workspace == 5 ? "active" : ""} :onclick "hyprctl dispatch workspace 5" (label :text "5"))
+    )
+)
+
+(
+    defwidget new-bar []
+    (
+        centerbox 
+        :orientation "h" 
+        :class "new-bar"
+        (left-module)
+        (center-workspaces)
+        (right-module)
+    )
+)
+
+(
+    defwindow statusbar_1
     :monitor 0
     :geometry (geometry :x "0%"
-        :y "10px"
-        :width "1908"
-        :height "30px"
-        :anchor "top center")
+                        :y "10px"
+                        :width "100%"
+                        :height "30px"
+                        :anchor "top center")
     :stacking "fg"
     :exclusive true
     :windowtype "dock"
     :wm-ignore false
-    (bar))
+    (new-bar)
+)
 
-(defwindow top-bar-2
+(
+    defwindow statusbar_2
     :monitor 1
     :geometry (geometry :x "0%"
-        :y "10px"
-        :width "1908"
-        :height "30px"
-        :anchor "top center")
+                        :y "10px"
+                        :width "100%"
+                        :height "30px"
+                        :anchor "top center")
     :stacking "fg"
     :exclusive true
     :windowtype "dock"
     :wm-ignore false
-    (bar))
+    (new-bar)
+)
