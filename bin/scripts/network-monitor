@@ -1,0 +1,13 @@
+#!/usr/bin/bash
+
+inet="enp9s0"
+last_rx=0
+last_tx=0
+while true; do
+    current_rx=$(cat /sys/class/net/$inet/statistics/rx_bytes)
+    current_tx=$(cat /sys/class/net/$inet/statistics/tx_bytes)
+    printf "DOWNLOAD: %i KiB/s UPLOAD: %i KiB/s\033[0K\r" $(( (current_rx - last_rx) / 1024 )) $(( (current_tx - last_tx) / 1024 ))
+    last_rx=$current_rx
+    last_tx=$current_tx
+    sleep 1
+done
