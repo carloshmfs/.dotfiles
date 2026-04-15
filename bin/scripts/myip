@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+result=$(curl -4 icanhazip.com 2> /dev/null)
+
+wl-copy $result
+
+echo $result
